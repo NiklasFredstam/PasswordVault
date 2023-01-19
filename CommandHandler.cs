@@ -23,7 +23,7 @@ namespace PasswordVault
         public CommandHandler(InputHandler ih)
         {
             this.ih = ih;
-            fh = new FileHandler(ih.clPath, ih.sPath);
+            fh = new FileHandler();
         }
 
         public void RunCommand()
@@ -83,7 +83,7 @@ namespace PasswordVault
             GetClientObject();
             FillPasswordDictionary();
             string toPrint = "";
-            if(ih.prop == "")
+            if(ih.prop == "*")
             {
                 foreach (var i in passwords)
                 {

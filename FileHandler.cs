@@ -7,12 +7,10 @@ namespace PasswordVault
 {
     public class FileHandler
     {
-        public string clPath { get; set; }
-        public string sPath { get; set; }
-        public FileHandler(string clPath, string sPath)
+        public string clPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\client.dat";
+        public string sPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\server.dat";
+        public FileHandler()
         {
-            this.clPath = clPath;
-            this.sPath = sPath;
         }
 
         public void WriteAllToServerFile(string data)

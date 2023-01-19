@@ -10,17 +10,16 @@ namespace PasswordVault
         //number of accepted arguments for each command
         private readonly Dictionary<string, List<int>> ACCEPTED_PARAMS = new Dictionary<string, List<int>>()
         {
-            {"init", new List<int>{ 3 } },
-            {"create", new List<int>{ 3 } },
-            {"get", new List<int>{ 3, 4 } },
-            {"set", new List<int>{ 4, 5 } },
-            {"delete", new List<int>{ 4 } },
-            {"secret", new List<int>{ 2 } }
+            {"init", new List<int>{ 1 } },
+            {"create", new List<int>{ 1 } },
+            {"get", new List<int>{ 2, 3 } },
+            {"set", new List<int>{ 2, 3 } },
+            {"delete", new List<int>{ 2 } },
+            {"secret", new List<int>{ 1 } },
+            {"show", new List<int>{ 1 }}
         };
         private string[] args;
         public string cmd { get; private set; }
-        public string clPath { get; private set; }
-        public string sPath { get; private set; } = "";
         public string mPwd { get; private set; }
         public string secretKey { get; private set; }
         public bool generatePassword { get; private set; } = false;
@@ -71,7 +70,6 @@ namespace PasswordVault
         public void SetProperties()
         {
             cmd = args[0].ToLower(); ;
-            clPath = args[1];
             switch (cmd)
             {
                 case "init":
@@ -99,31 +97,24 @@ namespace PasswordVault
 
         private void InitPopulate()
         {
-            sPath = args[2];
             RequestMasterPassword();
         }
 
         private void CreatePopulate()
         {
-            sPath = args[2];
             RequestMasterPassword();
             RequestSecretKey();
         }
 
         private void GetPopulate()
         {
-            sPath = args[2];
-            if (args.Length == 4)
-            {
-                prop = args[3];
-            }
+            prop = args[1];
             RequestMasterPassword();
         }
 
         private void SetPopulate()
         {
-            sPath = args[2];
-            prop = args[3];
+            prop = args[1];
 
             RequestMasterPassword();
 
@@ -139,8 +130,7 @@ namespace PasswordVault
 
         private void DeletePopulate()
         {
-            sPath = args[2];
-            prop = args[3];
+            prop = args[1];
             RequestMasterPassword();
         }
         private void RequestMasterPassword()
