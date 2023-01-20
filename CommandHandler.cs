@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 
 namespace PasswordVault
 {
@@ -94,6 +92,7 @@ namespace PasswordVault
             else if (passwords.TryGetValue(ih.prop, out string pwd))
             {
                 ih.PrintTextToConsole(pwd);
+                WindowsClipboard.SetText(pwd);
             }
         }
 
